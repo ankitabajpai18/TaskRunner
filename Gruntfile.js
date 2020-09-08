@@ -15,14 +15,7 @@ module.exports = function(grunt) {
      * @type {string}
      */
 
-    let THIRD_PARTY_JS = [
-      // 'app/design/frontend/Spaces/theme/web/js/vendorjs/Event.js',
-      'app/design/frontend/Spaces/theme/web/js/vendorjs/pinch-zoom.js',
-      // 'app/design/frontend/Spaces/theme/web/js/vendorjs/Magnifier.js',
-      // 'app/design/frontend/Spaces/theme/web/js/vendorjs/jquery.min.js',
-      // 'app/design/frontend/Spaces/theme/web/js/vendorjs/slick.min.js',
-      // 'app/design/frontend/Spaces/theme/web/js/vendorjs/nouislider.js',
-    ]
+    let THIRD_PARTY_JS = []
 
     /**
      * This folder will be watched and JS concated, mangled, minified
@@ -31,21 +24,15 @@ module.exports = function(grunt) {
      * @type {string}
      */
     let CUSTOM_JS = [
-      'app/design/frontend/Spaces/theme/web/js/customjs/main.js',
-      'app/design/frontend/Spaces/theme/web/js/customjs/home1.js',
-      'app/design/frontend/Spaces/theme/web/js/customjs/home2.js',
-      // 'app/design/frontend/Spaces/theme/web/js/customjs/base.js',
-      // 'app/design/frontend/Spaces/theme/web/js/customjs/suggestor.js',
-      // 'app/design/frontend/Spaces/theme/web/js/customjs/sticky-sidebar.js',
 
 
-    ]
-    /**
-     * The folder in which the JS output should be saved
-     *
-     * with trailing slash
-     * @type {string}
-     */
+        ]
+        /**
+         * The folder in which the JS output should be saved
+         *
+         * with trailing slash
+         * @type {string}
+         */
 
     let JS_DISTRIBUTION_FOLDER = 'pub/media/spaces/js/';
 
@@ -171,7 +158,7 @@ module.exports = function(grunt) {
             build: {
                 options: {
                     sourceMap: true,
-                    sourceMapName : JS_DISTRIBUTION_FOLDER + 'main.js.map',
+                    sourceMapName: JS_DISTRIBUTION_FOLDER + 'main.js.map',
                     mangle: true,
                     compress: true
                 },
@@ -207,7 +194,7 @@ module.exports = function(grunt) {
                 map: false,
                 processors: [
 
-                    require('autoprefixer')({'overrideBrowserslist': 'last 4 versions'})
+                    require('autoprefixer')({ 'overrideBrowserslist': 'last 4 versions' })
                 ]
             },
             dist: {
@@ -245,7 +232,7 @@ module.exports = function(grunt) {
                 options: {
                     optimizationLevel: img_optimization_lvl,
                     quality: img_quality_lvl,
-                    svgoPlugins: [{removeViewBox: false}]
+                    svgoPlugins: [{ removeViewBox: false }]
                 },
                 files: [{
                     expand: true,
@@ -259,7 +246,10 @@ module.exports = function(grunt) {
         // Multi Tasking
         concurrent: {
             image: ['imagemin:png', 'imagemin:jpg', 'imagemin:dynamic'],
-            build: [['js'], ['css'], 'concurrent:image']
+            build: [
+                ['js'],
+                ['css'], 'concurrent:image'
+            ]
         },
 
         // JS and CSS/Sass file watcher
